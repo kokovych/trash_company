@@ -93,5 +93,3 @@ class AccountCreateUserTest(TestCase):
             self.assertEqual(total_users, 1)
             self.assertEqual(self.user_email_1, user1.email)
             self.assertEqual(self.username_1, user1.username)
-
-

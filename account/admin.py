@@ -9,7 +9,6 @@ from .models import PersonalAccount
 admin.site.unregister(Group)
 
 
-
 @admin.register(PersonalAccount)
 class PersonalAccountAdmin(DjangoUserAdmin):
     fieldsets = (
