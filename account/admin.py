@@ -13,7 +13,7 @@ admin.site.unregister(Group)
 @admin.register(PersonalAccount)
 class PersonalAccountAdmin(DjangoUserAdmin):
     fieldsets = (
-        (None, {'fields': ('email', 'password', 'username', 'personal_account_number')}),
+        (None, {'fields': ('email', 'password', 'username', 'personal_account_number', 'user_type')}),
         (_('Personal info'), {'fields': (
             'first_name', 'last_name', 'city', 'street', 'house', 'flat')}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
@@ -27,7 +27,7 @@ class PersonalAccountAdmin(DjangoUserAdmin):
         }),
     )
 
-    list_display = ('email', 'first_name', 'last_name', 'username', 'is_staff', 'house')
+    list_display = ('email', 'first_name', 'last_name', 'username', 'is_staff', 'user_type')
     search_fields = ('email', 'first_name', 'last_name', 'username')
 
-# admin.site.register(PersonalAccount, UserAdmin)
+# admin.site.register(PersonalAccount, PersonalAccountAdmin)

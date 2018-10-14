@@ -4,6 +4,7 @@ from django.db.utils import IntegrityError
 from time import sleep
 
 from .models import PersonalAccount
+from .utils import TYPE_USERS
 
 
 class AccountCreateUserTest(TestCase):
@@ -25,6 +26,7 @@ class AccountCreateUserTest(TestCase):
         self.assertEqual(user_test.email, self.user_email_1)
         self.assertFalse(user_test.is_superuser)
         self.assertFalse(user_test.is_staff)
+        self.assertEqual(user_test.user_type, TYPE_USERS[1][0])
 
     def test_create_superuser(self):
         test_su = PersonalAccount.objects.create_superuser(
@@ -34,6 +36,7 @@ class AccountCreateUserTest(TestCase):
         self.assertEqual(test_su.email, self.user_email_1)
         self.assertTrue(test_su.is_superuser)
         self.assertTrue(test_su.is_staff)
+        self.assertEqual(test_su.user_type, TYPE_USERS[0][0])
         
         
     def test_create_user_without_email(self):
