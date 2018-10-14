@@ -29,4 +29,3 @@ class PersonalAccountAdmin(DjangoUserAdmin):
     list_display = ('email', 'first_name', 'last_name', 'username', 'is_staff', 'user_type')
     search_fields = ('email', 'first_name', 'last_name', 'username')
 
-# admin.site.register(PersonalAccount, PersonalAccountAdmin)

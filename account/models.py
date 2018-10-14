@@ -34,4 +34,16 @@ def create_auth_token(instance=None, created=False, **_):
     if created:
         Token.objects.create(user=instance)
 
+
+def create_username_default(instance=None, created=False, **_):
+    if created:
+        user=instance
+        username = user.username
+        if not username:
+            email = user.email
+            user.username = email
+            user.save()
+
+
 post_save.connect(create_auth_token, sender=settings.AUTH_USER_MODEL)
+post_save.connect(create_username_default, sender=settings.AUTH_USER_MODEL)
