@@ -3,10 +3,25 @@ from django import forms
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.contrib.auth.models import Group
 from django.utils.translation import ugettext_lazy as _
+from rest_framework.authtoken.models import Token
 
 from .models import PersonalAccount
 
+
 admin.site.unregister(Group)
+admin.site.unregister(Token)
+
+
+@admin.register(Token)
+class TokenAdmin(admin.ModelAdmin):
+    list_display = ('key', 'user', 'created')
+    fields = ("key", "user", "created")
+    search_fields = ("key", "user__email")
+    ordering = ("-created",)
+    readonly_fields = ("key", "user", "created")
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(PersonalAccount)
