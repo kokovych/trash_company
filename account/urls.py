@@ -7,7 +7,7 @@ from .api import (
 
 urlpatterns = [
     path('', PersonalAccountListView.as_view(), name='users_list' ),
-    path('registration/',CreatePersonalAccountView.as_view()),
+    path('registration/',CreatePersonalAccountView.as_view(), name='user_registration'),
     path('login/', LoginPersonalAccountView.as_view()),
     path('<int:pk>/', PersonalAccountDetailView.as_view(), name='user_detail')
 ]

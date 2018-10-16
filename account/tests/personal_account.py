@@ -3,8 +3,9 @@ from django.db import transaction
 from django.db.utils import IntegrityError
 from time import sleep
 
-from .models import PersonalAccount
-from .utils import TYPE_USERS
+from account.models import PersonalAccount
+from account.utils import TYPE_USERS
+# from .utils import TYPE_USERS
 
 
 class AccountCreateUserTest(TestCase):
