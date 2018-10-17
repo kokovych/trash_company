@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework_swagger.views import get_swagger_view
 
+from account.views import FrontendRenderView
+
 schema_view = get_swagger_view(title='Pastebin API')
 
 
@@ -24,4 +26,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/user/', include('account.urls')),
     path('docs/', schema_view)
+]
+
+urlpatterns += [
+    # your integrate path
+    path('', FrontendRenderView.as_view(), name='home')
 ]

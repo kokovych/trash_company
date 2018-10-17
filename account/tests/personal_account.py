@@ -5,7 +5,6 @@ from time import sleep
 
 from account.models import PersonalAccount
 from account.utils import TYPE_USERS
-# from .utils import TYPE_USERS
 
 
 class AccountCreateUserTest(TestCase):
