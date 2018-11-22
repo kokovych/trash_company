@@ -55,10 +55,6 @@ class LoginPersonalAccountView(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         email = request.data.get("email")
         password = request.data.get("password")
-        print(request.META)
-        print(request.data)
-        print(email)
-        print(password)
         try:
             user = PersonalAccount.objects.get(email=email) 
             if user:
