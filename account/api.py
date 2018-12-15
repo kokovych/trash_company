@@ -1,3 +1,6 @@
+from builtins import print
+
+from IPython.utils import generics
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
@@ -15,6 +18,21 @@ LOGIN_ERROR_DATA = {
     "status": STATUS_ERROR,
     "description": LOGIN_ERROR_DESCRIPTION
 }
+
+
+class PersonalAccountCurrentUserDetails(generics.ListAPIView):
+    queryset = PersonalAccount.objects.all()
+    serializer_class = PersonalAccountSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, *args, **kwargs):
+        params = self.request.META.get('HTTP_AUTHORIZATION')
+        auth_token = params.split(' ')[-1]
+        print(auth_token)
+        user = Token.objects.get(key=auth_token).user
+        print(user)
+        serializer = self.get_serializer(user)
+        return Response(serializer.data)
 
 
 class PersonalAccountListView(generics.ListAPIView):
@@ -42,7 +60,8 @@ class CreatePersonalAccountView(generics.CreateAPIView):
         email = serializer.data.get("email")
         token = Token.objects.get(user__email=email)
         response_data = {
-            "token": token.key
+            "token": token.key,
+            "success": True
         }
         return Response(response_data, status=status.HTTP_201_CREATED, headers=headers)
 

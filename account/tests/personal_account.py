@@ -37,8 +37,7 @@ class AccountCreateUserTest(TestCase):
         self.assertTrue(test_su.is_superuser)
         self.assertTrue(test_su.is_staff)
         self.assertEqual(test_su.user_type, TYPE_USERS[0][0])
-        
-        
+
     def test_create_user_without_email(self):
         try:
             PersonalAccount.objects.create_user(
