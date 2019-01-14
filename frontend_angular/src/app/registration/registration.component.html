@@ -1,0 +1,126 @@
+<app-page-header>
+
+</app-page-header>
+
+
+<div class="jumbotron">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="text-center col-6 ">
+
+        <div *ngIf="!userIsAuthorized">
+          <h2>Registration</h2>
+          <form [formGroup] ="userRegistrationForm" class="form-signin" (ngSubmit) = "onSubmit(userRegistrationForm.value)">
+            <div class="form-group" (click)="removeErrorDescription()">
+              <!--First name-->
+              <label for="firstName" class="sr-only">First Name</label>
+              <input id="firstName" class="form-control"
+                     formControlName="firstName" placeholder="First Name" >
+
+              <!--Last name-->
+              <label for="lastName" class="sr-only">Last Name</label>
+              <input id="lastName" class="form-control"
+                     formControlName="lastName" placeholder="Last Name" >
+
+              <!-- Username-->
+              <label for="username" class="sr-only">Username</label>
+              <input id="username" class="form-control"
+                     formControlName="username" placeholder="Username" >
+
+              <!--Email part-->
+              <label for="email" class="sr-only">Email</label>
+              <input id="email" class="form-control"
+                     formControlName="email" placeholder="Email address" required >
+
+              <!--Errors for email here:-->
+              <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)"
+                   class="alert alert-danger">
+
+                <div *ngIf="f.email.errors.required">
+                  Email is required.
+                </div>
+                <div *ngIf="f.email.errors.pattern">
+                  It does not look like email!
+                </div>
+              </div>
+              <!--end errors for email-->
+
+              <!--Password part-->
+              <label for="password" class="sr-only">Password</label>
+              <input type="password" class="form-control"
+                     name="password" id="password"
+                     formControlName = "password"
+                     placeholder="Password"
+                     required/>
+              <!--Errors for password and common errors here:-->
+              <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)"
+                   class="alert alert-danger">
+                <div *ngIf="f.password.errors.required">
+                  <span>
+                    Password is required.
+                  </span>
+                </div>
+                <!--&lt;!&ndash;Common login errors:&ndash;&gt;-->
+                <!--<div>-->
+                  <!--<span *ngIf="errorLogin">-->
+                    <!--{{errorLoginDescription}}-->
+                  <!--</span>-->
+                <!--</div>-->
+
+              </div>
+              <!--end errors for password-->
+
+              <!--password confirm-->
+              <label for="passwordConfirm" class="sr-only">Confirm password</label>
+              <input type="password" class="form-control"
+                     name="passwordConfirm" id="passwordConfirm"
+                     formControlName = "passwordConfirm"
+                     placeholder="Confirm password"
+                     required/>
+
+              <!--Errors for confirm password:-->
+              <div *ngIf="(f.passwordConfirm.invalid && (f.passwordConfirm.dirty || f.passwordConfirm.touched))"
+                   class="alert alert-danger">
+
+                <div *ngIf="f.passwordConfirm.errors.required">
+                  <span>
+                    Password confirmation is required!
+                  </span>
+                </div>
+
+                <div *ngIf="f.passwordConfirm.errors.mustMatch">
+                  <span>
+                    Password does not match!
+                  </span>
+                </div>
+
+              </div>
+
+              <div *ngIf="errorRregistration" id="id_errorRregistration"
+                   class="alert alert-danger">
+                <div >
+                  <span>
+                    {{ keyErrorObj }}: {{ valueErrorObj }}
+                  </span>
+                </div>
+              </div>
+
+              <button ngbButton class="btn btn-success" type="submit"
+                      [disabled]="userRegistrationForm.invalid">Registrate</button>
+            </div>
+          </form>
+        </div>
+
+        <div *ngIf="userIsAuthorized">
+          <h2>You have been already authorized!</h2>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-page-footer>
+
+</app-page-footer>

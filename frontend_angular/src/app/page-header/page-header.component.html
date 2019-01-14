@@ -1,0 +1,52 @@
+
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark text-center">
+
+  <a class="navbar-brand" routerLink="/">Main page</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" (click)="isNavbarCollapsed = !isNavbarCollapsed"
+    data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div [ngbCollapse]="!isNavbarCollapsed" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/">About</a>
+      </li>
+    </ul>
+  </div>
+
+  <!--<div class="mx-auto order-0">-->
+    <!--<a class="navbar-brand mx-auto" href="#">Navbar 2</a>-->
+    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">-->
+      <!--<span class="navbar-toggler-icon"></span>-->
+    <!--</button>-->
+  <!--</div>-->
+
+  <div  [ngbCollapse]="!isNavbarCollapsed" class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul *ngIf="!userIsAuthorized" class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/registration">
+        <button type="button" class="btn btn-info btn-header">Registration</button>
+        </a>
+      </li>
+      <li class="nav-item">
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login">
+          <button type="button" class="btn btn-info btn-header">Login</button>
+        </a>
+      </li>
+    </ul>
+    <ul *ngIf="userIsAuthorized" class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/logout">
+          <button type="button" class="btn btn-info btn-header">Logout</button>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</nav>
+
+

@@ -1,0 +1,19 @@
+<app-page-header>
+
+</app-page-header>
+
+
+<div class="jumbotron">
+  <div class="container">
+    <p>Home page here</p>
+    <div *ngIf="userIsAuthorized">
+      <p>Hello, {{ user.username}}!</p>
+      <p>Your email is: {{ user.email}}!</p>
+    </div>
+  </div>
+</div>
+
+
+<app-page-footer>
+
+</app-page-footer>

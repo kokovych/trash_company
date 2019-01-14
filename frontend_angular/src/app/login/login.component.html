@@ -1,0 +1,79 @@
+<app-page-header>
+
+</app-page-header>
+
+<div class="jumbotron">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="text-center col-6 ">
+
+        <div *ngIf="!userIsAuthorized">
+
+          <ngb-alert *ngIf="loginFromRegistration" id = "id_login_alert" type="success" (close)="closeAlert()">
+            You have been successfully registrated! Please, login
+          </ngb-alert>
+
+          <h2>Login</h2>
+          <form [formGroup] ="userLoginForm" class="form-signin" (ngSubmit) = "onSubmit(userLoginForm.value)">
+            <div class="form-group">
+
+              <label for="email" class="sr-only">Email</label>
+              <input id="email" class="form-control"
+                     formControlName="email" placeholder="Email address" required >
+
+              <!--Errors for email here:-->
+              <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                   class="alert alert-danger">
+
+                <div *ngIf="email.errors.required">
+                  Email is required.
+                </div>
+                <div *ngIf="email.errors.pattern">
+                  It does not look like email!
+                </div>
+              </div>
+              <!--end errors for email-->
+
+              <label for="password" class="sr-only">Password</label>
+              <input type="password" class="form-control"
+                     name="password" id="password"
+                     formControlName = "password"
+                     placeholder="Password"
+                     required/>
+              <!--Errors for password and common errors here:-->
+              <div *ngIf="errorLogin || (password.invalid && (password.dirty || password.touched))"
+                   class="alert alert-danger">
+                <div *ngIf="!errorLogin">
+                  <span *ngIf="password.errors.required">
+                    Password is required.
+                  </span>
+                </div>
+                <!--Common login errors:-->
+                <div>
+                  <span *ngIf="errorLogin">
+                    {{errorLoginDescription}}
+                  </span>
+                </div>
+
+              </div>
+              <!--end errors for password-->
+
+
+              <button ngbButton class="btn btn-success" type="submit"
+                      [disabled]="userLoginForm.invalid">Login</button>
+            </div>
+          </form>
+        </div>
+
+        <div *ngIf="userIsAuthorized">
+          <h2>You have been already authorized!</h2>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-page-footer>
+
+</app-page-footer>
