@@ -24,9 +24,12 @@ class RegistrationAPITest(APITestCase):
         resp_data = response.data
         self.assertEqual(PersonalAccount.objects.all().count(), 1)
         user = PersonalAccount.objects.first()
+        personal_account_number = user.personal_account_number
         self.assertEqual(user.email, self.test_email)
         self.assertEqual(user, Token.objects.get(key=resp_data.get('token')).user)
         self.assertEqual(TYPE_USERS[1][0], user.user_type)
+        self.assertIsNotNone(personal_account_number)
+        self.assertEqual(len(personal_account_number), 9)
     
     def test_register_without_email(self):
         data = {"password": self.test_password}
