@@ -19,3 +19,15 @@ export class UserRegistrationData{
   passwordConfirm: string;
 }
 
+export class UserData{
+  firstName: string;
+  lastName: string;
+  username: string;
+  email: string;
+  personal_account_number: string;
+  city: string;
+  street: string;
+  house: string;
+  flat: string;
+}
+

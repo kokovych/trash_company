@@ -3,7 +3,7 @@ import { UserDataService} from '../_services/userdata.service';
 import { Router, NavigationEnd } from '@angular/router';
 
 import { CheckAuthService } from '../_services/check-auth.service';
-import { UserRegistrationData } from '../_models/user';
+import { UserRegistrationData, UserData } from '../_models/user';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { UserRegistrationData } from '../_models/user';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor(private router: Router,private _userData: UserDataService, private _checkAuth: CheckAuthService){
+  constructor(private router: Router, private _userData: UserDataService, private _checkAuth: CheckAuthService){
     // override the route reuse strategy
     this.router.routeReuseStrategy.shouldReuseRoute = function(){
       return false;
@@ -31,7 +31,7 @@ export class HomepageComponent implements OnInit {
   }
 
   userIsAuthorized: boolean = this._checkAuth.isAuthorized();
-  user: UserRegistrationData = new UserRegistrationData();
+  user: UserData = new UserData();
 
   // constructor(
   //   private _userData: UserDataService, private _checkAuth: CheckAuthService) { }
@@ -52,8 +52,16 @@ export class HomepageComponent implements OnInit {
             console.log(data);
             this.user.username = data.username;
             this.user.email = data.email;
+            this.user.personal_account_number = data.personal_account_number;
+            this.user.firstName = data.first_name;
+            this.user.lastName = data.last_name;
+            this.user.city = data.city;
+            this.user.street = data.street;
+            this.user.house = data.house;
+            this.user.flat = data.flat;
             console.log(this.user.username );
             console.log(this.user.email);
+            console.log(this.user.personal_account_number);
           },
           error => {
             console.log("Error", error);

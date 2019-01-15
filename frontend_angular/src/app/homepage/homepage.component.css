@@ -1,0 +1,10 @@
+.personal{
+    border: 1px solid;
+    border-color: #307B35;
+    text-align: center;
+    margin: 5px;
+    padding: 5px 10px 5px 10px;
+}
+.personal-data{
+    text-align: left;
+}

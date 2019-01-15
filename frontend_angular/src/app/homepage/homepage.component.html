@@ -5,8 +5,28 @@
 
 <div class="jumbotron">
   <div class="container">
-    <p>Home page here</p>
+      <div *ngIf="!userIsAuthorized">
+          <h3>Welcome to our company!</h3>
+      </div>
     <div *ngIf="userIsAuthorized">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-offset-3 col-sm-4 personal account-number">
+                    <p>Personal account number is:
+                        <strong>{{ user.personal_account_number }}</strong></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 personal personal-data ">
+                    <p><strong>{{ user.lastName }} {{ user.firstName }}</strong></p>
+                    <p>
+                        {{ user.city }},
+                        {{ user.street }},
+                        {{ user.house }}-{{ user.flat }}
+                    </p>
+                </div>
+            </div>
+        </div>
       <p>Hello, {{ user.username}}!</p>
       <p>Your email is: {{ user.email}}!</p>
     </div>
