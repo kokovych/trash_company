@@ -1,6 +1,5 @@
 from builtins import print
 
-from IPython.utils import generics
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
@@ -28,9 +27,7 @@ class PersonalAccountCurrentUserDetails(generics.ListAPIView):
     def get(self, request, *args, **kwargs):
         params = self.request.META.get('HTTP_AUTHORIZATION')
         auth_token = params.split(' ')[-1]
-        print(auth_token)
         user = Token.objects.get(key=auth_token).user
-        print(user)
         serializer = self.get_serializer(user)
         return Response(serializer.data)
 

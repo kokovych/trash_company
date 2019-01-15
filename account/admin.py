@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django import forms
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.contrib.auth.models import Group
 from django.utils.translation import ugettext_lazy as _
@@ -21,7 +20,7 @@ class TokenAdmin(admin.ModelAdmin):
     readonly_fields = ("key", "user", "created")
 
     def has_delete_permission(self, request, obj=None):
-        return False
+        return True
 
 
 @admin.register(PersonalAccount)

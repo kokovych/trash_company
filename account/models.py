@@ -37,7 +37,7 @@ def create_auth_token(instance=None, created=False, **_):
 
 def create_username_default(instance=None, created=False, **_):
     if created:
-        user=instance
+        user = instance
         username = user.username
         if not username:
             email = user.email
@@ -45,5 +45,20 @@ def create_username_default(instance=None, created=False, **_):
             user.save()
 
 
+def create_personal_account_default(instance=None, created=False, **_):
+    if created:
+        user = instance
+        user_id = user.id
+        personal_account_number = "000000000" + str(user_id)
+        if len(personal_account_number) > 9:
+            diff = len(personal_account_number) - 9
+            personal_account_number = personal_account_number[diff:]
+            user.personal_account_number = personal_account_number
+        else:
+            user.personal_account_number = user_id
+        user.save()
+
+
 post_save.connect(create_auth_token, sender=settings.AUTH_USER_MODEL)
 post_save.connect(create_username_default, sender=settings.AUTH_USER_MODEL)
+post_save.connect(create_personal_account_default, sender=settings.AUTH_USER_MODEL)
