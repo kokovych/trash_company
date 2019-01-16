@@ -8,8 +8,7 @@ from .models import PersonalAccount
 class PersonalAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = PersonalAccount
-        #fields = "__all__"
-        exclude = ("password", "groups", "user_permissions" )
+        exclude = ("password", "groups", "user_permissions", "last_login", "date_joined")
 
 
 class CreatePersonalAccountSerializer(serializers.ModelSerializer):
