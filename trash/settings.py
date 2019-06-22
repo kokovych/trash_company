@@ -159,4 +159,4 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles"),
 ]
 
-CORS_ORIGIN_WHITELIST = 'localhost:4200', 'localhost:8080'
+CORS_ORIGIN_WHITELIST = 'localhost:4200', 'localhost:8080', '127.0.0.1:8000', 'localhost:8000'
